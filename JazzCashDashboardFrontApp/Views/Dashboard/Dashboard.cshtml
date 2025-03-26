@@ -1,0 +1,44 @@
+﻿@model dynamic
+
+<h2>Dashboard</h2>
+
+<table border="1">
+    <tr>
+        <th>Total Active Goals</th>
+        <th>Total Closed Goals</th>
+        <th>Total Expired Goals</th>
+        <th>Total Active Goals</th>
+        <th>Total Closed Goals</th>
+        <th>Total Expired Goals</th>
+        <th>Total Active Goals</th>
+        <th>Total Closed Goals</th>
+        <th>Total Expired Goals</th>
+        <th>Total Active Goals</th>
+        <th>Total Closed Goals</th>
+        <th>Total Expired Goals</th>
+    </tr>
+    <tr>
+           <td>@Model["TOTAL_ACTIVE_GOAL"]</td>
+        <td>@Model["TOTAL_COMPLETED_GOAL"]</td>
+        <td> @Model["TOTAL_CLOSED_GOAL"]</td>
+        <td>@Model["TOTAL_ACTIVE_GOAL"]</td>
+        <td>@Model["TOTAL_COMPLETED_GOAL"]</td>
+        <td> @Model["TOTAL_CLOSED_GOAL"]</td>
+        <td>@Model["TOTAL_ACTIVE_GOAL"]</td>
+        <td>@Model["TOTAL_COMPLETED_GOAL"]</td>
+        <td> @Model["TOTAL_CLOSED_GOAL"]</td>
+        <td>@Model["TOTAL_ACTIVE_GOAL"]</td>
+        <td>@Model["TOTAL_COMPLETED_GOAL"]</td>
+        <td> @Model["TOTAL_CLOSED_GOAL"]</td>
+        @*   <td>@Model.TOTAL_ACTIVE_GOAL</td>
+        <td>@Model.TOTAL_CLOSED_GOAL</td>
+        <td>@Model.TOTAL_COMPLETED_GOAL</td>
+        <td>@Model.TOTAL_ACTIVE_GOAL</td>
+        <td>@Model.TOTAL_CLOSED_GOAL</td>
+
+        <td>@Model.TOTAL_COMPLETED_GOAL</td> *@
+        <p><strong>Total Active Goals:</strong> @Model["TOTAL_ACTIVE_GOAL"]</p>
+        <p><strong>Total Closed Goals:</strong> @Model["TOTAL_CLOSED_GOAL"]</p>
+        <p><strong>Total Completed Goals:</strong> @Model["TOTAL_COMPLETED_GOAL"]</p>
+    </tr>
+</table>

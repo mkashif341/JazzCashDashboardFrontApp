@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationHandler\ApplicationHandler.csproj" />
+    <ProjectReference Include="..\ExceptionHandler\ExceptionHandler.csproj" />
+    <ProjectReference Include="..\SharedPackages\SharedPackages.csproj" />
+  </ItemGroup>
+
+</Project>
