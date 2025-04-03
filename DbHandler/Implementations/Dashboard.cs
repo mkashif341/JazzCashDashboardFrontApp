@@ -35,7 +35,8 @@ namespace DbHandler.Implementations
      
         public async Task<dynamic> GetTotalGoalsAsync()
         {
-            var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/GetTotalGoals");
+           // var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/GetTotalGoals");
+            var response = await _httpClient.GetStringAsync("https://localhost:7074/api/JazzCashGoals/GetTotalGoals");
             var data = JsonConvert.DeserializeObject<dynamic>(response);
 
             // Extracting first object from "result" array
