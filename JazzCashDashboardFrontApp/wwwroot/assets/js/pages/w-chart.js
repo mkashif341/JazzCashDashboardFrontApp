@@ -1,4 +1,24 @@
 'use strict';
+
+async function fetchWeeklyCreatedCount() {
+    try {
+        const response = await fetch('/api/Dashboard/weeklycreatedcount');
+        const data = await response.json(); // [5, 8, 10, ...]
+
+        console.log("Created counts:", data);
+
+        // Example: Loop through and display
+        //const container = document.getElementById('weeklyCounts');
+        //container.innerHTML = data.map((count, index) => `<li>Week ${index + 1}: ${count}</li>`).join('');
+        
+        const _data = data?.filter((i, a) => { return a < 7 && i });
+        return _data;
+
+    } catch (err) {
+        console.error('Error fetching created counts:', err);
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function () {
   setTimeout(function () {
     floatchart();
@@ -184,8 +204,8 @@ function floatchart() {
     var chart = new ApexCharts(document.querySelector('#visitor-chart-1'), options1);
     chart.render();
   })();
-  (function () {
-    var options = {
+  (async function () {
+    var options = await {
       chart: {
         type: 'bar',
         height: 365,
@@ -204,8 +224,10 @@ function floatchart() {
         enabled: false
       },
       series: [{
-        data: [80, 95, 70, 42, 65, 55, 78]
-      }],
+          //  data: [99, 95, 70, 95, 65, 55, 78]
+          data: fetchWeeklyCreatedCount()
+        }],
+      
       stroke: {
         curve: 'smooth',
         width: 2
@@ -226,6 +248,7 @@ function floatchart() {
         show: false
       }
     };
+    
     var chart = new ApexCharts(document.querySelector('#income-overview-chart'), options);
     chart.render();
   })();

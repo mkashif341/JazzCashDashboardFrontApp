@@ -1,4 +1,23 @@
 'use strict';
+async function fetchWeeklyCreatedCount() {
+    try {
+        
+        const response = await fetch('/weeklycreatedcount');
+        const data = await response.json(); // [5, 8, 10, ...]
+
+        console.log("Created counts:", data);
+
+        // Example: Loop through and display
+        //const container = document.getElementById('weeklyCounts');
+        //container.innerHTML = data.map((count, index) => `<li>Week ${index + 1}: ${count}</li>`).join('');
+        const _data = data?.filter((i, a) => { return a < 7 && i });
+        return _data;
+
+    } catch (err) {
+        console.error('Error fetching created counts:', err);
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function () {
   setTimeout(function () {
     floatchart();
@@ -67,8 +86,9 @@ function floatchart() {
     chart.render();
   })();
 
-  (function () {
-    var options = {
+    (async function () {
+        const _data =await fetchWeeklyCreatedCount()
+    var options ={
       chart: {
         type: 'bar',
         height: 365,
@@ -87,8 +107,9 @@ function floatchart() {
         enabled: false
       },
       series: [{
-        data: [80, 95, 70, 42, 65, 55, 78]
-      }],
+        //data: [99, 95, 70, 95, 65, 55, 78]
+          data: _data
+        }],
       stroke: {
         curve: 'smooth',
         width: 2
@@ -226,7 +247,48 @@ function floatchart() {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
       },
     }
-    var chart = new ApexCharts(document.querySelector('#sales-report-chart'), options);
+      var c
+      hart = new ApexCharts(document.querySelector('#sales-report-chart'), options);
     chart.render();
   })();
 }
+
+
+function GetCounts() {
+    
+    $.ajax({
+        "async": false,
+        "crossDomain": true,
+        url: '/GetCount', 
+        //type: 'JSON',
+        method: 'GET',
+        success: function (data) {
+            const goalData = JSON.parse(data).result[0];
+            $('#activeGoalsCount').text( goalData.TOTAL_ACTIVE_GOAL);
+            $('#closedGoalsCount').text(goalData.TOTAL_CLOSED_GOAL);
+            $('#expiredGoalsCount').text(goalData.TOTAL_EXPIRED_GOAL);
+            $('#completedGoalsCount').text(goalData.TOTAL_COMPLETED_GOAL);
+            $('#totalDepositCount').text(goalData.TOTAL_DEPOSIT_COUNT);
+            $('#totalWithdrawlCount').text(goalData.TOTAL_WITHDRAWAL_COUNT);
+            $('#depositAmount').text("PKR " + goalData.TOTAL_DEPOSIT_AMOUNT);
+            $('#withdrawlAmount').text("PKR " + goalData.TOTAL_WITHDRAWAL_AMOUNT);
+            $('#closedAmount').text("PKR " + goalData.TOTAL_CLOSED_AMOUNT);
+            $('#currentDeposit').text("PKR " + goalData.TOTAL_CURRENT_DEPOSIT);
+            $('#certificateCreatedCount').text(goalData.TOTAL_GOAL_CERTIFICATE);
+            $('#voucherCreatedCount').text(goalData.TOTAL_GOAL_VOUCHER);
+        },
+        error: function (xhr, status, error) {
+            console.log(data);
+            console.error('Error fetching goal stats:', error);
+        }
+    });
+}
+setInterval(function () {
+    GetCounts(),
+    fetchWeeklyCreatedCount()
+}, 5000);
+
+GetCounts();
+fetchWeeklyCreatedCount();
+
+

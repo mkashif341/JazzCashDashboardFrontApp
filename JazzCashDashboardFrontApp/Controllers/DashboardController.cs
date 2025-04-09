@@ -1,8 +1,11 @@
 ﻿using ApplicationHandler.interfaces.JazzCashDashboard;
-using JazzCashDashboardFrontApp.Interfaces.JazzCashGoals;
+using EntityHandler.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Data;
+using System.Dynamic;
 using System.Net.Http;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JazzCashDashboardFrontApp.Controllers
 {
@@ -30,32 +33,42 @@ namespace JazzCashDashboardFrontApp.Controllers
             return View();
         }
 
+        //public async Task<IActionResult> analytics()
+        //{
+
+        //    var model = new MyCombinedViewModel
+        //    {
+        //        DataOne = await _dashboard.GetTotalGoalsAsync(),
+        //        DataTwo = await _dashboard.GetWeeklyCreated_Count()
+        //    };
+
+        //    return View(model);
+        //}
+
         public async Task<IActionResult> analytics()
         {
-            var data = await _dashboard.GetTotalGoalsAsync();
 
-            Console.WriteLine("Controller Data: " + JsonConvert.SerializeObject(data));
 
-            //var response = await _httpClient.GetStringAsync("https://localhost:7074/api/JazzCashGoals/GetTotalGoals");
-            // var data = JsonConvert.DeserializeObject<dynamic>(response);
+            var DataOne = await GetCount();
+                //DataTwo = await _dashboard.GetWeeklyCreated_Count()
+            
 
-            return View(data);
+            return View();
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    var response = await _httpClient.GetStringAsync("https://yourapi.com/api/dashboard");
-        //    var data = JsonConvert.DeserializeObject<dynamic>(response);
-        //    return View(data);
-        //}
 
-        //public async Task<IActionResult> Dashboard()
-        //{
-        //    var data = await _dashboard.GetTotalGoalsAsync();
+        [HttpGet("weeklycreatedcount")]
+        public async Task<IActionResult> GetWeeklyCreatedCount()
+        {
+            var createdCounts = await _dashboard.GetWeeklyCreated_Count();
+            return Ok(createdCounts);
+        }
 
-        //    Console.WriteLine("Controller Data: " + JsonConvert.SerializeObject(data)); 
-
-        //    return View(data);
-        //}
+        [HttpGet("GetCount")]
+        public async Task<IActionResult> GetCount()
+        {
+            var createdCounts = await _dashboard.GetTotalGoalsAsync();
+            return Ok(createdCounts);
+        }
     }
 }

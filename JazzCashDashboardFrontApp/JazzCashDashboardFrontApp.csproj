@@ -13,7 +13,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DbHandler\DbHandler.csproj" />
+    <ProjectReference Include="..\EntityHandler\EntityHandler.csproj" />
     <ProjectReference Include="..\ResponseHandler\ResponseHandler.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Implementation\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 
 </Project>

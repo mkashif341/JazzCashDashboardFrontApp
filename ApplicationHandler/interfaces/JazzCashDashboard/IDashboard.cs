@@ -9,6 +9,7 @@ namespace ApplicationHandler.interfaces.JazzCashDashboard
     public interface IDashboard
     {
         Task<dynamic> GetTotalGoalsAsync();
-        //  Task<dynamic> GetDatewiseGoalsAsync();
+        Task<dynamic> GetDatewiseGoalsAsync();
+        Task<dynamic> GetWeeklyCreated_Count();
     }
 }
