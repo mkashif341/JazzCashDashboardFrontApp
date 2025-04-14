@@ -4,7 +4,7 @@
 <!-- [Head] start -->
 
 <head>
- // <title>Home | Mantis Bootstrap 5 Admin Template</title>
+  <title>Home | Mantis Bootstrap 5 Admin Template</title>
      <title>@ViewData["Title"] - JazzCashDashboardFrontApp</title>
 
   <!-- [Meta] -->
@@ -50,9 +50,9 @@
       <a href="../dashboard/index.html" class="b-brand text-primary">
         <!-- ========   Change your logo from here   ============ -->
 @* 				<img src="../assets/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo">
- *@					
-           <img src="../assets/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo">
-      </a>
+ *@				
+@*          <img src="~/assets/images/salaamsavings.png" />
+ *@      </a>
     </div>
     <div class="navbar-content">
       <ul class="pc-navbar">
@@ -63,10 +63,10 @@
           </a>
         </li>
 
-        <li class="pc-item pc-caption">
+       @*  <li class="pc-item pc-caption">
           <label>UI Components</label>
           <i class="ti ti-dashboard"></i>
-        </li>
+        </li> *@
        @*  <li class="pc-item">
           <a href="../elements/bc_typography.html" class="pc-link">
             <span class="pc-micon"><i class="ti ti-typography"></i></span>
@@ -388,6 +388,7 @@
   </ul>
 </div>
  </div>
+    </div>
 </header>
 <!-- [ Header ] end -->
 
@@ -401,6 +402,7 @@
                 @RenderBody()
             </main>
         </div>
+    </div>
 @*   <div class="pc-container">
     <div class="pc-content">
       <!-- [ breadcrumb ] start -->

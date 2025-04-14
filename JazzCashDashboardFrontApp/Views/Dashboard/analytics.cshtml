@@ -12,7 +12,7 @@
       <div class="pc-container">
     <div class="pc-content">
       <!-- [ breadcrumb ] start -->
-     <div class="page-header">
+  @*    <div class="page-header">
         <div class="page-block">
           <div class="row align-items-center">
             <div class="col-md-12">
@@ -21,17 +21,32 @@
               </div>
               <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
-@*                 <li class="breadcrumb-item" aria-current="page">Home</li>
- *@              </ul>
+                <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li> *@
+                            @*                 <li class="breadcrumb-item" aria-current="page">Home</li> *@
+        @*     </ul>
             </div>
           </div>
         </div>
-      </div>
+      </div> *@
       
       <!-- [ breadcrumb ] end -->
       <!-- [ Main Content ] start -->
       <div class="row">
+            <div class="col-md-6 col-xl-12">
+                <div class="card">
+                    <div class="card-body" style="background: white;height: 77px; ">
+                        <img src="~/assets/images/salaamsavings.png" style="
+    margin: -25px;
+    height: 72px;
+    width: 90px;
+    margin-left: 21px;
+" />
+                        <h4 class="mb-2" style="text-align:center;color: black;font-size: 32px;font-family: sans-serif;height: 180px;margin-top: -21px;">
+                                SFTL & JazzCash: Goals and Financial Achievements
+                            </h4>                      
+                    </div>
+                </div>
+            </div>
         <!-- [ sample-page ] start -->
         <div class="col-md-6 col-xl-3">
                 <div class="card" id="activeGoalsCountCard">
@@ -112,7 +127,7 @@
             <div class="col-md-6 col-xl-3">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="mb-2 f-w-400 text-muted">Total Withdrawl Count</h6>
+                        <h6 class="mb-2 f-w-400 text-muted" >Total Withdrawl Count</h6>
                         <h4 class="mb-3" id="totalWithdrawlCount">
                         </h4>
                         @*               <p class="mb-0 text-muted text-sm">You made an extra <span class="text-warning">1,943</span> this year</p>
@@ -136,8 +151,8 @@
         <div class="col-md-6 col-xl-3">
           <div class="card">
             <div class="card-body">
-              <h6 class="mb-2 f-w-400 text-muted">Total Withdraw Amount</h6>
-                        <h4 class="mb-3" id="withdrawlAmount">
+                        <h6 class="mb-2 f-w-400 text-muted" >Total Withdraw Amount</h6>
+                        <h4 class="mb-3" id="withdrawlAmount" style="color:red">
                             </h4>
 @*               <p class="mb-0 text-muted text-sm">You made an extra <span class="text-success">8,900</span> this year</p>
  *@            </div>
@@ -147,8 +162,8 @@
         <div class="col-md-6 col-xl-3">
           <div class="card">
             <div class="card-body">
-              <h6 class="mb-2 f-w-400 text-muted">Total Closed Amount</h6>
-                        <h4 class="mb-3" id="closedAmount">
+                        <h6 class="mb-2 f-w-400 text-muted" >Total Closed Amount</h6>
+                        <h4 class="mb-3" id="closedAmount" style="color:red">
                              </h4>
 @*               <p class="mb-0 text-muted text-sm">You made an extra <span class="text-warning">1,943</span> this year</p>
  *@            </div>
@@ -158,7 +173,7 @@
         <div class="col-md-6 col-xl-3">
           <div class="card">
             <div class="card-body">
-              <h6 class="mb-2 f-w-400 text-muted">Net Amount</h6>
+              <h6 class="mb-2 f-w-400 text-muted" >Net Amount</h6>
                         <h4 class="mb-3" id="currentDeposit">
                           </h4>
              @*  <p class="mb-0 text-muted text-sm">You made an extra <span class="text-danger">$20,395</span> this year
@@ -201,8 +216,9 @@
  *@@*         
  *@       
  
-            @* NEXT GRAPGH START HERE
-                <div class="col-md-12 col-xl-4">
+@*            / NEXT GRAPGH START HERE
+ *@        
+ @*        <div class="col-md-12 col-xl-4">
           <h5 class="mb-3">Income Overview</h5>
           <div class="card">
             <div class="card-body">
@@ -211,10 +227,10 @@
               <div id="income-overview-chart"></div>
             </div>
           </div>
-        </div> 
+        </div>  *@
         
-        END GRAPH
-        *@
+@*         END GRAPH
+ *@       
 
 @*         <div class="col-md-12 col-xl-8">
           <h5 class="mb-3">Recent Orders</h5>
@@ -417,5 +433,4 @@
  *@      </div>
     </div>
   </div>
-
 

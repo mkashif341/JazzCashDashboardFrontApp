@@ -1,4 +1,5 @@
 ﻿using ApplicationHandler.interfaces.JazzCashDashboard;
+using ExceptionHandler.Models;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestSharp;
@@ -25,12 +26,12 @@ namespace DbHandler.Implementations
             _httpClient = httpClient;
             _apiBaseUrl = configuration["ApiSettings:BaseUrl"];
 
-//            for ssl certification error on the development environment
+            //            for ssl certification error on the development environment
 
-           var handler = new HttpClientHandler
-           {
-               ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
-           };
+            var handler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+            };
 
             _httpClient = new HttpClient(handler);
 
@@ -38,50 +39,65 @@ namespace DbHandler.Implementations
 
         public async Task<dynamic> GetTotalGoalsAsync()
         {
-            var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/GetTotalGoals");
-            //var data = JsonConvert.DeserializeObject<dynamic>(response);
-
-            // Extracting first object from "result" array
-            //var extractedData = data.result;
-
-            //Console.WriteLine("Extracted Data: " + JsonConvert.SerializeObject(extractedData));
-
-            return response;
+            try
+            {
+                var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/GetTotalGoals");
+                if (response is null || response.Count() == 0)
+                    throw new NotFoundException("Requested entity not found!");
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
         }
 
         public async Task<dynamic> GetDatewiseGoalsAsync()
         {
-            var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/GetGoalsByDateWise");
-            var data = JsonConvert.DeserializeObject<dynamic>(response);
-         
-            var dataList = data.result;
-            return dataList;
+            try
+            {
+
+                var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/GetGoalsByDateWise");
+                var data = JsonConvert.DeserializeObject<dynamic>(response);
+
+                var dataList = data.result;
+                return dataList;
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
         }
         public async Task<dynamic> GetWeeklyCreated_Count()
         {
-            var data = GetDatewiseGoalsAsync();
-          
-           var dataTwo = await GetDatewiseGoalsAsync();
-            var createdCounts = new List<decimal>();
+           try{
+                var data = GetDatewiseGoalsAsync();
 
-            foreach (var item in dataTwo)
-            {
-                if (item != null && item.CREATED_COUNT != null)
+                var dataTwo = await GetDatewiseGoalsAsync();
+                var createdCounts = new List<decimal>();
+
+                foreach (var item in dataTwo)
                 {
-                    decimal createdCount = 0;
-                    bool isConverted = decimal.TryParse(item.CREATED_COUNT.ToString(), out createdCount);
-
-                    if (isConverted)
+                    if (item != null && item.CREATED_COUNT != null)
                     {
-                        createdCounts.Add(createdCount);
+                        decimal createdCount = 0;
+                        bool isConverted = decimal.TryParse(item.CREATED_COUNT.ToString(), out createdCount);
+
+                        if (isConverted)
+                        {
+                            createdCounts.Add(createdCount);
+                        }
                     }
                 }
+
+
+                return createdCounts;
+           }
+            catch(Exception ex)
+            {
+                return ex;
             }
-
-       
-            return createdCounts;
         }
-
 
 
     }

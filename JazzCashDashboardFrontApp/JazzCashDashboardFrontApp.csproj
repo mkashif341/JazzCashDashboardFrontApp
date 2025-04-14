@@ -20,6 +20,7 @@
   <ItemGroup>
     <Folder Include="Implementation\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="wwwroot\assets\images\NewFolder\" />
   </ItemGroup>
 
 </Project>

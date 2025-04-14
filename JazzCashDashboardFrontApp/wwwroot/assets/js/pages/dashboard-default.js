@@ -5,7 +5,7 @@ async function fetchWeeklyCreatedCount() {
         const response = await fetch('/weeklycreatedcount');
         const data = await response.json(); // [5, 8, 10, ...]
 
-        console.log("Created counts:", data);
+        //console.log("Created counts:", data);
 
         // Example: Loop through and display
         //const container = document.getElementById('weeklyCounts');
@@ -104,7 +104,8 @@ function floatchart() {
         }
       },
       dataLabels: {
-        enabled: false
+          //enabled: false
+          enabled: true
       },
       series: [{
         //data: [99, 95, 70, 95, 65, 55, 78]
@@ -278,7 +279,7 @@ function GetCounts() {
             $('#voucherCreatedCount').text(goalData.TOTAL_GOAL_VOUCHER);
         },
         error: function (xhr, status, error) {
-            console.log(data);
+            //console.log(data);
             console.error('Error fetching goal stats:', error);
         }
     });
